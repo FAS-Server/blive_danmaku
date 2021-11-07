@@ -1,10 +1,10 @@
 from mcdreforged.api.utils import Serializable
-from typing import List, Dict, Optional
+from typing import List, Dict
 from mcdreforged.api.types import PluginServerInterface
 from blive_danmaku.utils import Singleton
 
 
-class Room_Config(Serializable):
+class RoomConfig(Serializable):
     id: int = 1233654  # 房间id
     listener: List[str] = [
         "DANMU_MSG", "COMBO_SEND", "GUARD_BUY", "SUPER_CHAT_MESSAGE",
@@ -16,7 +16,7 @@ class Room_Config(Serializable):
 class Config(Serializable, Singleton):
     switch: bool = True
     default_listener: List[str] = ['DANMU_MSG', 'COMBO_SEND']
-    room_map: Dict[str, Room_Config] = {'1233654': Room_Config()}
+    room_map: Dict[str, RoomConfig] = {'1233654': RoomConfig()}
 
     def save(self):
         server = PluginServerInterface.get_instance().as_plugin_server_interface()

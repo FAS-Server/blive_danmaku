@@ -1,19 +1,24 @@
 import asyncio
+from asyncio import CancelledError
+
 from bilibili_api import live
+from bilibili_api.exceptions.LiveException import LiveException
 from mcdreforged.minecraft.rtext import RTextBase, RTextList
-from blive_danmaku.config import Room_Config, save_config
+from blive_danmaku.config import RoomConfig, save_config
 from threading import Thread
 from typing import List
-from mcdreforged.api.rtext import RText, RAction, RColor
+from mcdreforged.api.rtext import RText, RColor
 from blive_danmaku.utils import print_msg
 
 
 class Room(Thread):
-    def __init__(self, config: Room_Config):
-        Thread.__init__(self)
+    def __init__(self, config: RoomConfig):
+        Thread.__init__(self, name=f'BliveThread-{config.id}')
         self.config = config
         self.stream = live.LiveDanmaku(self.id)
         self._init_listener()
+        self.event_loop = None
+        self.task = None
 
     @property
     def id(self):
@@ -24,7 +29,7 @@ class Room(Thread):
         return self.config.nickname
 
     @nickname.setter
-    def nickname_setter(self, nick_name: str):
+    def nickname(self, nick_name: str):
         self.config.nickname = nick_name
         save_config()
 
@@ -33,20 +38,21 @@ class Room(Thread):
         return self.config.listener
 
     @listener.setter
-    def listener_setter(self, listener: List[str]):
+    def listener(self, listener: List[str]):
         self.config.listener = listener
         save_config()
 
     def get_room_prefix(self) -> RTextBase:
         return RText(f'[{self.nickname}]', RColor.light_purple).h('TODO: 直播间管理')
 
-    def get_user_prefix(self, uname: str, uid: int, color: RColor = RColor.white, short_prefix: bool = False):
+    @staticmethod
+    def get_user_prefix(uname: str, uid: int, color: RColor = RColor.white, short_prefix: bool = False):
         text = f'{uname}' if short_prefix else f'<{uname}>'
         return RText(text, color).h('TODO: 用户操作')
 
-        #-------------#
-        # 事件监听开始 #
-        #-------------#
+        # -------------#
+        #  事件监听开始 #
+        # -------------#
 
     async def on_danmu_msg(self, event):
         # DANMU_MSG: 用户发送弹幕
@@ -78,11 +84,27 @@ class Room(Thread):
         # {
         #     'data': {
         #         'data': {
-        #             'action': '投喂', 'batch_combo_id': 'batch:gift:combo_id:193775874:269415357:30607:1635831689.2308', 'batch_combo_send': None, 'beatId': '', 'biz_source': 'live', 'blind_gift': None, 'broadcast_id': 0, 'coin_type': 'silver', 'combo_resources_id': 1, 'combo_send': None, 'combo_stay_time': 3, 'combo_total_coin': 1, 'crit_prob': 0, 'demarcation': 1, 'discount_price': 0, 'dmscore': 24, 'draw': 0, 'effect': 0, 'effect_block': 1, 'face': 'http://i0.hdslb.com/bfs/face/6ab78e1b25acc2fa326310565ad5f8e2d53b2978.jpg', 'float_sc_resource_id': 0,
-        #             'giftId': 30607, 'giftName': '小心心', 'giftType': 5, 'gold': 0, 'guard_level': 0, 'is_first': False, 'is_special_batch': 0, 'magnification': 1,
-        #             'medal_info': {'anchor_roomid': 0, 'anchor_uname': '', 'guard_level': 0, 'icon_id': 0, 'is_lighted': 1, 'medal_color': 9272486, 'medal_color_border': 9272486, 'medal_color_end': 9272486, 'medal_color_start': 9272486, 'medal_level': 10, 'medal_name': '德云色', 'special': '', 'target_id': 8739477},
-        #             'num': 1, 'price': 0, 'rcost': 58907141, 'remain': 1, 'rnd': '1931396080', 'send_master': None, 'silver': 0, 'super': 0, 'super_batch_gift_num': 2, 'super_gift_num': 2, 'svga_block': 0, 'tag_image': '', 'tid': '1635831689120400002', 'timestamp': 1635831689, 'top_list': None, 'total_coin': 0,
-        #             'uid': 193775874, 'uname': '浪里白条哈赛ki'}}}
+        #             'action': '投喂', 'batch_combo_id': 'batch:gift:combo_id:193775874:269415357:30607:1635831689.2308',
+        #             'batch_combo_send': None, 'beatId': '', 'biz_source': 'live', 'blind_gift': None,
+        #             'broadcast_id': 0, 'coin_type': 'silver', 'combo_resources_id': 1, 'combo_send': None,
+        #             'combo_stay_time': 3, 'combo_total_coin': 1, 'crit_prob': 0, 'demarcation': 1,
+        #             'discount_price': 0, 'dmscore': 24, 'draw': 0, 'effect': 0, 'effect_block': 1,
+        #             'float_sc_resource_id': 0,
+        #             'giftId': 30607, 'giftName': '小心心', 'giftType': 5, 'gold': 0, 'guard_level': 0,
+        #             'is_first': False, 'is_special_batch': 0, 'magnification': 1,
+        #             'medal_info': {
+        #                 'anchor_roomid': 0, 'anchor_uname': '', 'guard_level': 0, 'icon_id': 0, 'is_lighted': 1,
+        #                 'medal_color': 9272486, 'medal_color_border': 9272486, 'medal_color_end': 9272486,
+        #                 'medal_color_start': 9272486, 'medal_level': 10, 'medal_name': '德云色', 'special': '',
+        #                 'target_id': 8739477
+        #             },
+        #             'num': 1, 'price': 0, 'rcost': 58907141, 'remain': 1, 'rnd': '1931396080', 'send_master': None,
+        #             'silver': 0, 'super': 0, 'super_batch_gift_num': 2, 'super_gift_num': 2, 'svga_block': 0,
+        #             'tag_image': '', 'tid': '1635831689120400002', 'timestamp': 1635831689, 'top_list': None,
+        #             'total_coin': 0, 'uid': 193775874, 'uname': '浪里白条哈赛ki'
+        #         }
+        #     }
+        # }
         print_msg(RTextList(
             self.get_room_prefix(),
             self.get_user_prefix(
@@ -251,38 +273,48 @@ class Room(Thread):
 
     async def on_verification_successful(self, event):
         # VERIFICATION_SUCCESSFUL: 认证成功
-        {'room_display_id': 7777, 'room_real_id': 545068,
-            'type': 'VERIFICATION_SUCCESSFUL'}
+        # {'room_display_id': 7777, 'room_real_id': 545068,
+        #     'type': 'VERIFICATION_SUCCESSFUL'}
         print_msg(RTextList(
             self.get_room_prefix(),
             '连接成功'
         ))
 
-    #-------------#
+    # -------------#
     # 事件监听结束 #
-    #-------------#
+    # -------------#
 
     def _init_listener(self):
-        deaflut_listener = ["DANMU_MSG", "SEND_GIFT", "COMBO_SEND", "GUARD_BUY", "SUPER_CHAT_MESSAGE", "PREPARING", "LIVE",
+        default_listener = ["DANMU_MSG", "SEND_GIFT", "COMBO_SEND", "GUARD_BUY", "SUPER_CHAT_MESSAGE", "PREPARING",
+                            "LIVE",
                             "INTERACT_WORD", "VERIFICATION_SUCCESSFUL"]
         listener = []
         if len(self.listener) == 0:
-            listener = deaflut_listener
+            listener = default_listener
         else:
             for i in self.listener:
-                if i in deaflut_listener:
+                if i in default_listener:
                     listener.append(i)
         self.config.listener = listener
         # save_config()
         for e in listener:
-            self.stream.on(e)(eval(f"self.on_{e.lower()}"))
+            self.stream.add_event_listener(e, eval(f"self.on_{e.lower()}"))
+            # self.stream.on(e)(eval(f"self.on_{e.lower()}"))
             # print('绑定事件: ' + e)
 
-    def connect(self):
-        asyncio.run(self.stream.connect())
-
-    def disconnect(self):
-        asyncio.run(self.stream.disconnect())
+    async def connect(self):
+        self.task = asyncio.create_task(self.stream.connect())
+        try:
+            await self.task
+        except CancelledError:
+            await self.stream.disconnect()
 
     def run(self):
-        self.connect()
+        self.event_loop = asyncio.new_event_loop()
+        self.event_loop.run_until_complete(self.connect())
+
+    def cancel(self):
+        try:
+            self.task.cancel()
+        except LiveException as e:
+            print('错误! ' + e.msg)
