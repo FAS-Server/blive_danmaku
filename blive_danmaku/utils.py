@@ -8,7 +8,7 @@ class Singleton(object):
 
     def __new__(cls, *args, **kwargs):
         if not isinstance(cls._instance, cls):
-            cls._instance = object.__new__(cls, *args, **kwargs)
+            cls._instance = object.__new__(cls)
         return cls._instance
 
     @classmethod
@@ -18,6 +18,6 @@ class Singleton(object):
 
 def print_msg(message: Union[str, RTextBase]):
     try:
-        ServerInterface.get_instance().broadcast(message)
+        ServerInterface.get_instance().say(message)
     except AttributeError:
         print(message)

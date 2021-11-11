@@ -1,7 +1,6 @@
 from mcdreforged.api.utils import Serializable
-from typing import List, Dict
+from typing import List
 from mcdreforged.api.types import PluginServerInterface
-from blive_danmaku.utils import Singleton
 
 
 class RoomConfig(Serializable):
@@ -13,20 +12,11 @@ class RoomConfig(Serializable):
     nickname: str = 'FAS'
 
 
-class Config(Serializable, Singleton):
-    switch: bool = True
-    default_listener: List[str] = ['DANMU_MSG', 'COMBO_SEND']
-    room_map: Dict[str, RoomConfig] = {'1233654': RoomConfig()}
-
-    def save(self):
-        server = PluginServerInterface.get_instance().as_plugin_server_interface()
-        filename = server.get_self_metadata().id + '.json'
-        server.save_config_simple(
-            self, file_name=filename, in_data_folder=False)
-        PluginServerInterface.get_instance(
-        ).as_plugin_server_interface().save_config_simple(self)
+def load_config(server: PluginServerInterface) -> RoomConfig:
+    filename = server.get_self_metadata().id + '.json'
+    return server.load_config_simple(file_name=filename, target_class=RoomConfig)
 
 
-def save_config():
-    config = Config.get_instance()
-    config.save()
+def save_config(server: PluginServerInterface, config: RoomConfig):
+    filename = server.get_self_metadata().id + '.json'
+    server.save_config_simple(config=config, file_name=filename)

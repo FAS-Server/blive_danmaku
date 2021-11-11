@@ -1,10 +1,10 @@
 {
     "id": "blive_danmaku",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "name": "Blibili Live Danmaku",
     "description": "Danmaku plugin for bilibili",
     "author": "YehowahLiu",
-    "link": "https://github.com/MCDReforged/MCDReforged-ExamplePlugin",
+    "link": "https://github.com/FAS-Server/blive_danmaku",
     "entrypoint": "blive_danmaku.entry",
     "dependencies": {
         "mcdreforged": ">=2.0.0"
