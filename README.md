@@ -47,5 +47,5 @@
 | ACTIVITY_BANNER_UPDATE_V2     | 小时榜   | 未实现         |
 | ROOM_REAL_TIME_MESSAGE_UPDATE | 粉丝数更新 | 未实现         |
 | NOTICE_MSG                    | 系统通知  | 未实现         |
-| VIEW                          | 人气更新  | 未实现         |
+| VIEW                          | 人气更新  |             |
 
