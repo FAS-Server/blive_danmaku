@@ -110,3 +110,25 @@ class UserInterface(Singleton):
             .c(RAction.suggest_command, f'{PREFIX} reload'),
             '以同步配置'
         ))
+
+    def color_panel(self, src: CommandSource):
+        panel = RTextList(
+            RText("来点颜色:\n"),
+            RText("⬛ ", RColor.black),
+            RText("⬛ ", RColor.dark_blue),
+            RText("⬛ ", RColor.dark_green),
+            RText("⬛ \n", RColor.dark_aqua),
+            RText("⬛ ", RColor.dark_red),
+            RText("⬛ ", RColor.dark_purple),
+            RText("⬛ ", RColor.gold),
+            RText("⬛ \n", RColor.gray),
+            RText("⬛ ", RColor.dark_gray),
+            RText("⬛ ", RColor.blue),
+            RText("⬛ ", RColor.green),
+            RText("⬛ \n", RColor.aqua),
+            RText("⬛ ", RColor.red),
+            RText("⬛ ", RColor.light_purple),
+            RText("⬛ ", RColor.yellow),
+            RText("⬛ ", RColor.white)
+        )
+        src.reply(panel)

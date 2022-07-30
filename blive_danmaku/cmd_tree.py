@@ -33,6 +33,8 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
                 )
             )
         )
+    ).then(
+        Literal('color').runs(ui.color_panel)
     )
 
     # TODO: 添加发送弹幕功能
