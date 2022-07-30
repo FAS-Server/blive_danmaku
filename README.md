@@ -1,7 +1,7 @@
 # Blive Danmaku
 
 [![MCDReforged](https://img.shields.io/badge/dynamic/json?label=MCDReforged&query=dependencies.mcdreforged&url=https%3A%2F%2Fraw.githubusercontent.com%2FFAS-Server%2Fblive_danmaku%2Fmaster%2Fmcdreforged.plugin.json&style=plastic)](https://github.com/Fallen-Breath/MCDReforged)
-[![license](https://img.shields.io/github/license/FAS-Server/blive_danmaku)](https://github.com/FAS-Server/blive_danmaku/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/FAS-Server/blive_danmaku)](https://github.com/FAS-Server/blive_danmaku/blob/master/LICENSE)
 [![build status](https://img.shields.io/github/workflow/status/FAS-Server/blive_danmaku/CI%20for%20MCDR%20Plugin?label=build&style=plastic)](https://github.com/FAS-Server/blive_danmaku/actions)
 [![Release](https://img.shields.io/github/v/release/FAS-Server/blive_danmaku?style=plastic)](https://github.com/FAS-Server/blive_danmaku/releases/latest)
 ![total download](https://img.shields.io/github/downloads/FAS-Server/blive_danmaku/total?label=total%20download&style=plastic)
