@@ -16,7 +16,7 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
     ).then(
         get_admin_node('config').runs(ui.conf_menu).then(
             get_conf_node('id').then(
-                Integer('id').runs(lambda src, ctx: ui.edit_conf(src, 'id', ctx['room_id']))
+                Integer('id').runs(lambda src, ctx: ui.edit_conf(src, 'id', ctx['id']))
             )
         ).then(
             get_conf_node('nickname').then(
@@ -29,7 +29,7 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
                 )
             ).then(
                 Literal('del').then(
-                    Text('listener').runs(lambda src, ctx: ui.modify_listener(src, 'add', ctx['listener']))
+                    Text('listener').runs(lambda src, ctx: ui.modify_listener(src, 'del', ctx['listener']))
                 )
             )
         )
