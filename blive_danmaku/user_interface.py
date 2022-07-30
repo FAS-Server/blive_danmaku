@@ -31,7 +31,7 @@ class UserInterface(Singleton):
                       .c(RAction.suggest_command, f'{PREFIX} config id <房间号>'))
         elif conf_name == 'nickname':
             src.reply(RText(f'§b房间名称§r: {self.room.nickname}').h('点击修改')
-                      .c(RAction.suggest_command, f'{PREFIX} config name <房间名称>'))
+                      .c(RAction.suggest_command, f'{PREFIX} config nickname <房间名称>'))
         elif conf_name == 'listener':
             src.reply(RText(f'§b事件监听列表§r: \n{", ".join(self.config.listener)}')
                       .h('点击编辑').c(RAction.run_command, f'{PREFIX} config listener'))
