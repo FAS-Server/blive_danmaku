@@ -1,2 +1,2 @@
-bilibili-api>=9.0.2
+bilibili-api-python~=11.8.1
 mcdreforged>=2.0.0
