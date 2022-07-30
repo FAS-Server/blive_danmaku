@@ -56,6 +56,7 @@ class UserInterface(Singleton):
         self.room = Room(self.config)
         self.room.start()
         src.reply('重载完毕!')
+        self.need_reload = False
 
     def edit_conf(self, src: CommandSource, key: str, value: Union[int, str]):
         ok = False
