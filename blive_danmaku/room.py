@@ -9,8 +9,8 @@ from threading import Thread
 from typing import List
 from mcdreforged.api.rtext import RText, RColor
 
-from blive_danmaku.constants import listener_map
 from blive_danmaku.utils import print_msg
+from blive_danmaku.danmaku_events import all_event_name
 
 
 class Room(Thread):
@@ -312,7 +312,7 @@ class Room(Thread):
             listener = default_listener
         else:
             for i in self.listener:
-                if i in listener_map:
+                if i in all_event_name:
                     listener.append(i)
         self.config.listener = listener
         # save_config()

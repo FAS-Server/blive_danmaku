@@ -1,11 +1,12 @@
 from typing import Union
 
-from mcdreforged.api.types import PluginServerInterface, CommandSource
 from mcdreforged.api.rtext import *
+from mcdreforged.api.types import PluginServerInterface, CommandSource
 
-from blive_danmaku.room import Room
 from blive_danmaku.config import RoomConfig, save_config, load_config
-from blive_danmaku.constants import PREFIX, listener_map
+from blive_danmaku.constants import PREFIX
+from blive_danmaku.danmaku_events import DanmakuEvents, all_event_name, Event
+from blive_danmaku.room import Room
 from blive_danmaku.utils import Singleton
 
 
@@ -33,7 +34,7 @@ class UserInterface(Singleton):
             src.reply(RText(f'§b房间名称§r: {self.room.nickname}').h('点击修改')
                       .c(RAction.suggest_command, f'{PREFIX} config nickname <房间名称>'))
         elif conf_name == 'listener':
-            src.reply(RText(f'§b事件监听列表§r: \n{", ".join(self.config.listener)}')
+            src.reply(RText(f'§b事件监听§r:  {len(self.room.listener)} / {len(all_event_name)}')
                       .h('点击编辑').c(RAction.run_command, f'{PREFIX} config listener'))
 
     def help_msg(self, src: CommandSource):
@@ -85,14 +86,15 @@ class UserInterface(Singleton):
                 return RColor.yellow
 
         def generate(key) -> RTextBase:
+            event: Event = DanmakuEvents[key].value
             return RTextList(
                 '-',
-                RText(key, color=get_color(key)).h(listener_map.get(key)),
                 RText(' [↑]', color=RColor.green).h('启用').c(RAction.run_command, f'{PREFIX} config listener add {key}'),
-                RText(' [↓]', color=RColor.red).h('禁用').c(RAction.run_command, f'{PREFIX} config listener del {key}')
+                RText(' [↓]  ', color=RColor.red).h('禁用').c(RAction.run_command, f'{PREFIX} config listener del {key}'),
+                RText(event.msg, color=get_color(key)).h(f'{event.code}  {event.remark}'),
             )
 
-        list(map(lambda key: src.reply(generate(key)), listener_map))
+        list(map(lambda key: src.reply(generate(key)), all_event_name))
 
     def modify_listener(self, src: CommandSource, action: str, key: str):
         action_map = {'add': self.config.listener.append, 'del': self.config.listener.remove}
