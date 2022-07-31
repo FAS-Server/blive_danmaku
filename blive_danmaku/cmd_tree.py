@@ -37,11 +37,10 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
         Literal('color').runs(ui.color_panel)
     )
 
-    # TODO: 添加发送弹幕功能
-    # root_node.then(
-    #     Literal('say').then(
-    #         GreedyText('message')
-    #     )
-    # )
+    root_node.then(
+        get_admin_node('say').then(
+            GreedyText('msg').runs(lambda src, ctx: ui.send_danmaku(src, ctx['msg']))
+        )
+    )
     server.register_command(root_node=root_node)
     server.register_help_message(PREFIX, '将B站直播间弹幕转发至游戏内')

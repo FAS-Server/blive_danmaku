@@ -1,7 +1,7 @@
 from typing import Union
 
 from mcdreforged.api.rtext import *
-from mcdreforged.api.types import PluginServerInterface, CommandSource
+from mcdreforged.api.types import PluginServerInterface, CommandSource, PlayerCommandSource
 
 from blive_danmaku.config import RoomConfig, save_config, load_config
 from blive_danmaku.constants import PREFIX
@@ -41,6 +41,7 @@ class UserInterface(Singleton):
         def command_rtext(cmd, help_msg):
             full_cmd = f'{PREFIX} {cmd}'.strip()
             return RText(f'\n§b{full_cmd}§r {help_msg}').h(f'点击填入{full_cmd}').c(RAction.suggest_command, full_cmd)
+
         msg = RTextList(
             RText(f'-------- §d{self.metadata.name}§a v{self.metadata.version}§r --------'),
             command_rtext('', '显示此条帮助'),
@@ -89,8 +90,10 @@ class UserInterface(Singleton):
             event: Event = DanmakuEvents[key].value
             return RTextList(
                 '-',
-                RText(' [↑]', color=RColor.green).h('启用').c(RAction.run_command, f'{PREFIX} config listener add {key}'),
-                RText(' [↓]  ', color=RColor.red).h('禁用').c(RAction.run_command, f'{PREFIX} config listener del {key}'),
+                RText(' [↑]', color=RColor.green).h('启用').c(RAction.run_command,
+                                                              f'{PREFIX} config listener add {key}'),
+                RText(' [↓]  ', color=RColor.red).h('禁用').c(RAction.run_command,
+                                                              f'{PREFIX} config listener del {key}'),
                 RText(event.msg, color=get_color(key)).h(f'{event.code}  {event.remark}'),
             )
 
@@ -134,3 +137,6 @@ class UserInterface(Singleton):
             RText("⬛ ", RColor.white)
         )
         src.reply(panel)
+
+    def send_danmaku(self, src: CommandSource, msg: str):
+        self.room.send_danmaku(msg)

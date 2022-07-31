@@ -1,6 +1,7 @@
-from mcdreforged.api.utils import Serializable
 from typing import List
+
 from mcdreforged.api.types import PluginServerInterface
+from mcdreforged.api.utils import Serializable
 
 
 class RoomConfig(Serializable):
@@ -10,6 +11,9 @@ class RoomConfig(Serializable):
         "PREPARING", "LIVE", "INTERACT_WORD", "VERIFICATION_SUCCESSFUL"
     ]
     nickname: str = 'FAS'
+    is_login: bool = False
+    csrf: str = ''
+    sessdata: str = ''
 
 
 def load_config(server: PluginServerInterface) -> RoomConfig:

@@ -1,16 +1,19 @@
 import asyncio
 from asyncio import CancelledError
+from threading import Thread
+from typing import List
 
 from bilibili_api import live
 from bilibili_api.exceptions.LiveException import LiveException
-from mcdreforged.minecraft.rtext import RTextBase, RTextList
-from blive_danmaku.config import RoomConfig
-from threading import Thread
-from typing import List
+from mcdreforged.api.decorator import new_thread
 from mcdreforged.api.rtext import RText, RColor
+from mcdreforged.minecraft.rtext import RTextBase, RTextList
+from requests import post
+import time
 
-from blive_danmaku.utils import print_msg
+from blive_danmaku.config import RoomConfig
 from blive_danmaku.danmaku_events import all_event_name
+from blive_danmaku.utils import print_msg
 
 
 class Room(Thread):
@@ -50,6 +53,27 @@ class Room(Thread):
     def get_user_prefix(uname: str, uid: int, color: RColor = RColor.white, short_prefix: bool = False):
         text = f'{uname}' if short_prefix else f'<{uname}>'
         return RText(text, color)
+
+    @new_thread
+    def send_danmaku(self, msg: str):
+        payload = post(
+            url='https://api.live.bilibili.com/msg/send',
+            params={
+                'msg': msg,
+                'rnd': int(time.time()),
+                'color': 16777215,
+                'fontsize': 25,
+                'mode': 1,
+                'roomid': self.id,
+                'bubble': 0,
+                'csrf': self.config.csrf,
+                'csrf_token': self.config.csrf
+            },
+            cookies={
+                'SESSDATA': self.config.sessdata,
+                'bili_jct': self.config.csrf
+            }
+        )
 
         # -------------#
         #  事件监听开始 #
@@ -340,7 +364,6 @@ class Room(Thread):
 
 
 if __name__ == '__main__':
-    import time
     try:
         room_id = int(input('输入房间id: '))
         conf = {
