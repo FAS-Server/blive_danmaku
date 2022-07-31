@@ -22,7 +22,7 @@ if __name__ == '__main__':
             exit(0)
         break
     stream = LiveDanmaku(room_display_id=room_id)
-    room_path = os.path.join('output', str(room_id))
+    room_path = os.path.join('../output', str(room_id))
 
     @stream.on('ALL')
     async def on_all_event(event):
