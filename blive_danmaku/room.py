@@ -337,3 +337,38 @@ class Room(Thread):
             self.task.cancel()
         except LiveException as e:
             print('错误! ' + e.msg)
+
+
+if __name__ == '__main__':
+    import time
+    try:
+        room_id = int(input('输入房间id: '))
+        conf = {
+            'id': room_id,
+            'nickname': 'Test',
+            'listener': [
+                "DANMU_MSG", "COMBO_SEND", "GUARD_BUY", "SUPER_CHAT_MESSAGE",
+                "PREPARING", "LIVE", "VERIFICATION_SUCCESSFUL"
+            ]
+        }
+        room = Room(RoomConfig(**conf))
+
+        print('尝试连接')
+        room.start()
+        while room.stream.get_status() != room.stream.STATUS_ESTABLISHED:
+            pass
+        time.sleep(5)
+        print('尝试断开')
+        room.cancel()
+        room.join()
+        time.sleep(5)
+        print('尝试连接')
+        del room
+        room = Room(RoomConfig(**conf))
+        room.start()
+        room.join()
+    except ValueError:
+        print('输入格式错误!')
+    except KeyboardInterrupt:
+        exit(0)
+    exit(0)
