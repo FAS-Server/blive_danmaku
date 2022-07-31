@@ -9,12 +9,12 @@ class Event:
 
 
 class DanmakuEvents(Enum):
-    DANMU_MSG = Event('DANMU_MSG', '用户发送弹幕')
+    DANMU_MSG = Event('DANMU_MSG', '用户弹幕')
     SEND_GIFT = Event('SEND_GIFT', '礼物', '不推荐, 实时性强但易刷屏')
     COMBO_SEND = Event('COMBO_SEND', '礼物连击', '推荐使用, 连击计算稍慢')
     GUARD_BUY = Event('GUARD_BUY', '续费大航海')
     SUPER_CHAT_MESSAGE = Event('SUPER_CHAT_MESSAGE', '醒目留言(SC)')
-    # SUPER_CHAT_MESSAGE_JPN = Event('SUPER_CHAT_MESSAGE_JPN', '醒目留言（带日语翻译？）')
+    # SUPER_CHAT_MESSAGE_JPN = Event('SUPER_CHAT_MESSAGE_JPN', '醒目留言（带日语翻译）')
     WELCOME = Event('WELCOME', '老爷进入', '未实现')
     WELCOME_GUARD = Event('WELCOME_GUARD', '房管进入', '未实现')
     NOTICE_MSG = Event('NOTICE_MSG', '系统通知', '未实现')  # 全频道广播之类的
@@ -29,6 +29,13 @@ class DanmakuEvents(Enum):
     # DISCONNECT = Event('DISCONNECT', '断开连接', '未实现')
     # TIMEOUT = Event('TIMEOUT', '心跳响应超时', '未实现')
     VERIFICATION_SUCCESSFUL = Event('VERIFICATION_SUCCESSFUL', '连接成功')
+    # DANMU_AGGREGATION = Event('DANMU_AGGREGATION', '聚合弹幕', '天选时刻相关?')
+    # STOP_LIVE_ROOM_LIST = Event('STOP_LIVE_ROOM_LIST', '关播房间列表')
+    # WATCHED_CHANGE = Event('WATCHED_CHANGE')
+    # WIDGET_BANNER = Event('WIDGET_BANNER', '小部件横幅', '大概是活动展示？')
+    # ONLINE_RANK_V2 = Event('ONLINE_RANK_V2', '高能榜前七列表', '是完整列表哦')
+    # ONLINE_RANK_TOP3 = Event('ONLINE_RANK_TOP3', '高能榜前三变化')
+    # ONLINE_RANK_COUNT = Event('ONLINE_RANK_COUNT', '高能用户数量', '需要用户在观看直播才会计数')
 
 
 all_event_name = list(map(lambda t: t.value.code, DanmakuEvents))
