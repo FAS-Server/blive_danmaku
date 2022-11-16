@@ -351,9 +351,12 @@ class Room(Thread):
             f'人气值为{event["data"]}'
         ))
 
-    async def on_watch_changed(self, event):
+    async def on_watched_change(self, event):
         # WATCHED_CHANGE
-        pass
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            event['data']['data']['text_large']
+        ))
 
     # -------------#
     # 事件监听结束 #
