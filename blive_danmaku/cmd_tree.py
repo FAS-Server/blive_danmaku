@@ -3,6 +3,7 @@ from mcdreforged.api.types import PluginServerInterface
 
 from blive_danmaku.constants import PREFIX
 from blive_danmaku.user_interface import UserInterface
+from blive_danmaku.danmaku_events import all_event_name
 
 
 def register_command(server: PluginServerInterface, ui: UserInterface):
@@ -25,11 +26,11 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
         ).then(
             get_conf_node('listener').runs(ui.list_listener).then(
                 Literal('add').then(
-                    Text('listener').runs(lambda src, ctx: ui.modify_listener(src, 'add', ctx['listener']))
+                    Text('listener').suggests(lambda src, ctx: all_event_name).runs(lambda src, ctx: ui.modify_listener(src, 'add', ctx['listener']))
                 )
             ).then(
                 Literal('del').then(
-                    Text('listener').runs(lambda src, ctx: ui.modify_listener(src, 'del', ctx['listener']))
+                    Text('listener').suggests(lambda src, ctx: all_event_name).runs(lambda src, ctx: ui.modify_listener(src, 'del', ctx['listener']))
                 )
             )
         )
