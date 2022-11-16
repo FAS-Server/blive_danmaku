@@ -33,8 +33,6 @@ def register_command(server: PluginServerInterface, ui: UserInterface):
                 )
             )
         )
-    ).then(
-        Literal('color').runs(ui.color_panel)
     )
 
     root_node.then(
