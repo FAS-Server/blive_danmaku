@@ -1,0 +1,39 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "LIKE_INFO_V3_CLICK",
+    "data": {
+        "cmd": "LIKE_INFO_V3_CLICK",
+        "data": {
+            "show_area": 0,
+            "msg_type": 6,
+            "like_icon": "https://i0.hdslb.com/bfs/live/23678e3d90402bea6a65251b3e728044c21b1f0f.png",
+            "uid": 104524009,
+            "like_text": "为主播点赞了",
+            "uname": "千江云",
+            "uname_color": "",
+            "identities": [
+                3,
+                1
+            ],
+            "fans_medal": {
+                "target_id": 269415357,
+                "medal_level": 5,
+                "medal_name": "花儿呀",
+                "medal_color": 6126494,
+                "medal_color_start": 6126494,
+                "medal_color_end": 6126494,
+                "medal_color_border": 6126494,
+                "is_lighted": 1,
+                "guard_level": 0,
+                "special": "",
+                "icon_id": 0,
+                "anchor_roomid": 0,
+                "score": 2100
+            },
+            "contribution_info": {
+                "grade": 0
+            }
+        }
+    }
+}

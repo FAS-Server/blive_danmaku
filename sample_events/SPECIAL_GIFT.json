@@ -1,0 +1,19 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "SPECIAL_GIFT",
+    "data": {
+        "cmd": "SPECIAL_GIFT",
+        "data": {
+            "39": {
+                "action": "start",
+                "content": "糟了，是心动的感觉！",
+                "hadJoin": 0,
+                "id": "3373642938450",
+                "num": 1,
+                "storm_gif": "http://static.hdslb.com/live-static/live-room/images/gift-section/mobilegift/2/jiezou.gif?2017011901",
+                "time": 90
+            }
+        }
+    }
+}

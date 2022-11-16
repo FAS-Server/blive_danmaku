@@ -1,0 +1,69 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "SUPER_CHAT_MESSAGE",
+    "data": {
+        "cmd": "SUPER_CHAT_MESSAGE",
+        "data": {
+            "background_bottom_color": "#E2B52B",
+            "background_color": "#FFF1C5",
+            "background_color_end": "#EEBE5C",
+            "background_color_start": "#EAB400",
+            "background_icon": "",
+            "background_image": "https://i0.hdslb.com/bfs/live/a712efa5c6ebc67bafbe8352d3e74b820a00c13e.png",
+            "background_price_color": "#ECCF75",
+            "color_point": 0.7,
+            "dmscore": 120,
+            "end_time": 1667910904,
+            "gift": {
+                "gift_id": 12000,
+                "gift_name": "醒目留言",
+                "num": 1
+            },
+            "id": 5505967,
+            "is_ranked": 1,
+            "is_send_audit": 0,
+            "medal_info": {
+                "anchor_roomid": 7688602,
+                "anchor_uname": "花花Haya",
+                "guard_level": 3,
+                "icon_id": 0,
+                "is_lighted": 1,
+                "medal_color": "#6154c",
+                "medal_color_border": 6809855,
+                "medal_color_end": 6850801,
+                "medal_color_start": 398668,
+                "medal_level": 25,
+                "medal_name": "花儿呀",
+                "special": "",
+                "target_id": 269415357
+            },
+            "message": "老板娘，你也不想让雪国的房子都化掉吧（",
+            "message_font_color": "#72110E",
+            "message_trans": "",
+            "price": 100,
+            "rate": 1000,
+            "start_time": 1667910604,
+            "time": 300,
+            "token": "75AF80C7",
+            "trans_mark": 0,
+            "ts": 1667910604,
+            "uid": 9560226,
+            "user_info": {
+                "face": "https://i0.hdslb.com/bfs/face/fa2a99432ea45e26c4dd99a6aff86796fb1a246d.jpg",
+                "face_frame": "https://i0.hdslb.com/bfs/live/80f732943cc3367029df65e267960d56736a82ee.png",
+                "guard_level": 3,
+                "is_main_vip": 1,
+                "is_svip": 0,
+                "is_vip": 0,
+                "level_color": "#5896de",
+                "manager": 0,
+                "name_color": "#00D1F1",
+                "title": "0",
+                "uname": "燕窝银耳桂花儿粥",
+                "user_level": 21
+            }
+        },
+        "roomid": 7688602
+    }
+}

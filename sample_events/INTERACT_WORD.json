@@ -1,0 +1,45 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "INTERACT_WORD",
+    "data": {
+        "cmd": "INTERACT_WORD",
+        "data": {
+            "contribution": {
+                "grade": 0
+            },
+            "dmscore": 16,
+            "fans_medal": {
+                "anchor_roomid": 42062,
+                "guard_level": 0,
+                "icon_id": 0,
+                "is_lighted": 0,
+                "medal_color": 1725515,
+                "medal_color_border": 12632256,
+                "medal_color_end": 12632256,
+                "medal_color_start": 12632256,
+                "medal_level": 21,
+                "medal_name": "燃烧瓶",
+                "score": 50001391,
+                "special": "",
+                "target_id": 730732
+            },
+            "identities": [
+                1
+            ],
+            "is_spread": 0,
+            "msg_type": 1,
+            "privilege_type": 0,
+            "roomid": 7688602,
+            "score": 1667910564761,
+            "spread_desc": "",
+            "spread_info": "",
+            "tail_icon": 0,
+            "timestamp": 1667910564,
+            "trigger_time": 1667910563656215300,
+            "uid": 44994241,
+            "uname": "苞米驴",
+            "uname_color": ""
+        }
+    }
+}

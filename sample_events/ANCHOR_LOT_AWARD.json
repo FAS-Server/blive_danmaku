@@ -1,0 +1,101 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ANCHOR_LOT_AWARD",
+    "data": {
+        "cmd": "ANCHOR_LOT_AWARD",
+        "data": {
+            "award_dont_popup": 1,
+            "award_image": "",
+            "award_name": "花花Q版钥匙扣",
+            "award_num": 1,
+            "award_type": 0,
+            "award_users": [
+                {
+                    "uid": 35574150,
+                    "uname": "初夏の轮囬",
+                    "face": "https://i0.hdslb.com/bfs/face/29f00236e5044664b1fc6e100c30f21d9da0985a.jpg",
+                    "level": 12,
+                    "color": 6406234,
+                    "num": 1
+                },
+                {
+                    "uid": 661505538,
+                    "uname": "东西了了",
+                    "face": "http://i0.hdslb.com/bfs/face/3d8df6b29d6bff2c71c7441f2413b6678365556f.jpg",
+                    "level": 0,
+                    "color": 9868950,
+                    "num": 1
+                },
+                {
+                    "uid": 33010860,
+                    "uname": "之语TvT",
+                    "face": "https://i0.hdslb.com/bfs/face/5824cf30f97b98947a59044df534a38c3d2e4efa.jpg",
+                    "level": 20,
+                    "color": 6406234,
+                    "num": 1
+                },
+                {
+                    "uid": 104524009,
+                    "uname": "千江云",
+                    "face": "https://i1.hdslb.com/bfs/face/1aa2a7bf1feb92d2e0867979500aaca3cef42d04.jpg",
+                    "level": 1,
+                    "color": 9868950,
+                    "num": 1
+                },
+                {
+                    "uid": 4588479,
+                    "uname": "聆子兮Dreas",
+                    "face": "https://i0.hdslb.com/bfs/face/496f42cb4a3dd03d6d4dea34b08587ba2cc13ec7.jpg",
+                    "level": 24,
+                    "color": 5805790,
+                    "num": 1
+                },
+                {
+                    "uid": 259465920,
+                    "uname": "卸雨流Ray",
+                    "face": "https://i0.hdslb.com/bfs/face/d2ba93a5cbc05178eac01c48bfd290469711af1d.jpg",
+                    "level": 28,
+                    "color": 5805790,
+                    "num": 1
+                },
+                {
+                    "uid": 594477665,
+                    "uname": "怪诞薯条小狗",
+                    "face": "https://i2.hdslb.com/bfs/face/2e3b699b22dc82246945f9dc07786b1e97577e77.jpg",
+                    "level": 0,
+                    "color": 9868950,
+                    "num": 1
+                },
+                {
+                    "uid": 15669641,
+                    "uname": "井涵碧",
+                    "face": "http://i2.hdslb.com/bfs/face/0f8f62e9ce8a3ece18a82b23dd03538d55056847.jpg",
+                    "level": 15,
+                    "color": 6406234,
+                    "num": 1
+                },
+                {
+                    "uid": 285379876,
+                    "uname": "神梦亦空",
+                    "face": "https://i1.hdslb.com/bfs/face/97920f3f9f5de12d59c868cc26e8e5ede958dbf4.jpg",
+                    "level": 11,
+                    "color": 6406234,
+                    "num": 1
+                },
+                {
+                    "uid": 89408889,
+                    "uname": "颖岚4869",
+                    "face": "https://i0.hdslb.com/bfs/face/3a0f2654405defe79e75f9f37161d3c99109c83d.jpg",
+                    "level": 1,
+                    "color": 9868950,
+                    "num": 1
+                }
+            ],
+            "id": 3416671,
+            "lot_status": 2,
+            "url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html?is_live_half_webview=1&hybrid_biz=live-lottery-anchor&hybrid_half_ui=1,5,100p,100p,000000,0,30,0,0,1;2,5,100p,100p,000000,0,30,0,0,1;3,5,100p,100p,000000,0,30,0,0,1;4,5,100p,100p,000000,0,30,0,0,1;5,5,100p,100p,000000,0,30,0,0,1;6,5,100p,100p,000000,0,30,0,0,1;7,5,100p,100p,000000,0,30,0,0,1;8,5,100p,100p,000000,0,30,0,0,1",
+            "web_url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html"
+        }
+    }
+}

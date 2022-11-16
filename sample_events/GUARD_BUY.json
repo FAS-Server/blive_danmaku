@@ -1,0 +1,19 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "GUARD_BUY",
+    "data": {
+        "cmd": "GUARD_BUY",
+        "data": {
+            "uid": 4047195,
+            "username": "林达达Vatar",
+            "guard_level": 2,
+            "num": 1,
+            "price": 1998000,
+            "gift_id": 10002,
+            "gift_name": "提督",
+            "start_time": 1667920872,
+            "end_time": 1667920872
+        }
+    }
+}

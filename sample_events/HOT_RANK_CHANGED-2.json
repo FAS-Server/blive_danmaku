@@ -1,0 +1,87 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "DANMU_MSG",
+    "data": {
+        "cmd": "DANMU_MSG",
+        "info": [
+            [
+                0,
+                1,
+                25,
+                4546550,
+                1667910602859,
+                1667908678,
+                0,
+                "34f6c070",
+                0,
+                0,
+                0,
+                "",
+                0,
+                "{}",
+                "{}",
+                {
+                    "mode": 0,
+                    "show_player_type": 0,
+                    "extra": "{\"send_from_me\":false,\"mode\":0,\"color\":4546550,\"dm_type\":0,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"草\",\"user_hash\":\"888586352\",\"emoticon_unique\":\"\",\"bulge_display\":0,\"recommend_score\":4,\"main_state_dm_color\":\"\",\"objective_state_dm_color\":\"\",\"direction\":0,\"pk_direction\":0,\"quartet_direction\":0,\"anniversary_crowd\":0,\"yeah_space_type\":\"\",\"yeah_space_url\":\"\",\"jump_to_url\":\"\",\"space_type\":\"\",\"space_url\":\"\"}"
+                },
+                {
+                    "activity_identity": "",
+                    "activity_source": 0,
+                    "not_show": 0
+                }
+            ],
+            "草",
+            [
+                319648877,
+                "Tai_zong",
+                0,
+                0,
+                0,
+                10000,
+                1,
+                ""
+            ],
+            [
+                23,
+                "花儿呀",
+                "花花Haya",
+                7688602,
+                1725515,
+                "",
+                0,
+                1725515,
+                1725515,
+                5414290,
+                0,
+                1,
+                269415357
+            ],
+            [
+                16,
+                0,
+                6406234,
+                ">50000",
+                0
+            ],
+            [
+                "",
+                ""
+            ],
+            0,
+            0,
+            null,
+            {
+                "ts": 1667910602,
+                "ct": "D0B621D2"
+            },
+            0,
+            0,
+            null,
+            null,
+            0,
+            63
+        ]
+    }
+}

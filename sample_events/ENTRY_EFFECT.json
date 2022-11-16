@@ -1,0 +1,38 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ENTRY_EFFECT",
+    "data": {
+        "cmd": "ENTRY_EFFECT",
+        "data": {
+            "id": 312,
+            "uid": 97014861,
+            "target_id": 269415357,
+            "mock_effect": 0,
+            "face": "https://i0.hdslb.com/bfs/face/ae5ce35c5573d653ee2f4a0de09fd864be5955b9.jpg",
+            "privilege_type": 0,
+            "copy_writing": "欢迎<%安心a9%>进入直播间",
+            "copy_color": "#ffffff",
+            "highlight_color": "#6746EC",
+            "priority": 1,
+            "basemap_url": "https://i0.hdslb.com/bfs/live/mlive/25aae97f7ee93e052c97c35ced788a243e3e5819.png",
+            "show_avatar": 1,
+            "effective_time": 3,
+            "web_basemap_url": "https://i0.hdslb.com/bfs/live/mlive/25aae97f7ee93e052c97c35ced788a243e3e5819.png",
+            "web_effective_time": 3,
+            "web_effect_close": 1,
+            "web_close_time": 900,
+            "business": 2,
+            "copy_writing_v2": "欢迎<%安心a9%>进入直播间",
+            "icon_list": [],
+            "max_delay_time": 7,
+            "trigger_time": 1667910684616390682,
+            "identities": 1,
+            "effect_silent_time": 0,
+            "effective_time_new": 0,
+            "web_dynamic_url_webp": "",
+            "web_dynamic_url_apng": "",
+            "mobile_dynamic_url_webp": ""
+        }
+    }
+}

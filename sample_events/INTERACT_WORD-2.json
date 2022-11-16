@@ -1,0 +1,45 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "INTERACT_WORD",
+    "data": {
+        "cmd": "INTERACT_WORD",
+        "data": {
+            "contribution": {
+                "grade": 0
+            },
+            "dmscore": 18,
+            "fans_medal": {
+                "anchor_roomid": 7688602,
+                "guard_level": 0,
+                "icon_id": 0,
+                "is_lighted": 0,
+                "medal_color": 1725515,
+                "medal_color_border": 12632256,
+                "medal_color_end": 12632256,
+                "medal_color_start": 12632256,
+                "medal_level": 23,
+                "medal_name": "花儿呀",
+                "score": 50005566,
+                "special": "",
+                "target_id": 269415357
+            },
+            "identities": [
+                1
+            ],
+            "is_spread": 0,
+            "msg_type": 1,
+            "privilege_type": 0,
+            "roomid": 7688602,
+            "score": 1667910562368,
+            "spread_desc": "",
+            "spread_info": "",
+            "tail_icon": 0,
+            "timestamp": 1667910562,
+            "trigger_time": 1667910561279165200,
+            "uid": 272412297,
+            "uname": "YOOOOOkiya",
+            "uname_color": ""
+        }
+    }
+}

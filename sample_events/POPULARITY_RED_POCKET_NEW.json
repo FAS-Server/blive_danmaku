@@ -1,0 +1,37 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "POPULARITY_RED_POCKET_NEW",
+    "data": {
+        "cmd": "POPULARITY_RED_POCKET_NEW",
+        "data": {
+            "lot_id": 7004767,
+            "start_time": 1667911436,
+            "current_time": 1667911067,
+            "wait_num": 3,
+            "uname": "花瓶装巴旦木",
+            "uid": 23618861,
+            "action": "送出",
+            "num": 1,
+            "gift_name": "红包",
+            "gift_id": 13000,
+            "price": 100,
+            "name_color": "",
+            "medal_info": {
+                "target_id": 269415357,
+                "special": "",
+                "icon_id": 0,
+                "anchor_uname": "",
+                "anchor_roomid": 0,
+                "medal_level": 13,
+                "medal_name": "花儿呀",
+                "medal_color": 12478086,
+                "medal_color_start": 12478086,
+                "medal_color_end": 12478086,
+                "medal_color_border": 12478086,
+                "is_lighted": 1,
+                "guard_level": 0
+            }
+        }
+    }
+}

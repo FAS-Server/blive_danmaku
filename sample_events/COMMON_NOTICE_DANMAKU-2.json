@@ -1,0 +1,23 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "COMMON_NOTICE_DANMAKU",
+    "data": {
+        "cmd": "COMMON_NOTICE_DANMAKU",
+        "data": {
+            "content_segments": [
+                {
+                    "font_color": "#FB7299",
+                    "text": "直播小电视 送出的红包为主播新增41个粉丝！",
+                    "type": 1
+                }
+            ],
+            "dmscore": 144,
+            "terminals": [
+                2,
+                3,
+                5
+            ]
+        }
+    }
+}

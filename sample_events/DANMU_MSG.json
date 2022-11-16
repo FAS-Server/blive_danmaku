@@ -1,0 +1,87 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "DANMU_MSG",
+    "data": {
+        "cmd": "DANMU_MSG",
+        "info": [
+            [
+                0,
+                1,
+                25,
+                5566168,
+                1667910610795,
+                0,
+                0,
+                "7d65337d",
+                0,
+                2,
+                0,
+                "",
+                0,
+                "{}",
+                "{}",
+                {
+                    "mode": 0,
+                    "show_player_type": 0,
+                    "extra": "{\"send_from_me\":false,\"mode\":0,\"color\":5566168,\"dm_type\":0,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"红包抽礼物，开启今日好运！\",\"user_hash\":\"2103784317\",\"emoticon_unique\":\"\",\"bulge_display\":0,\"recommend_score\":1,\"main_state_dm_color\":\"\",\"objective_state_dm_color\":\"\",\"direction\":0,\"pk_direction\":0,\"quartet_direction\":0,\"anniversary_crowd\":0,\"yeah_space_type\":\"\",\"yeah_space_url\":\"\",\"jump_to_url\":\"\",\"space_type\":\"\",\"space_url\":\"\"}"
+                },
+                {
+                    "activity_identity": "7003981",
+                    "activity_source": 2,
+                    "not_show": 1
+                }
+            ],
+            "红包抽礼物，开启今日好运！",
+            [
+                10252964,
+                "Nekulo",
+                0,
+                0,
+                0,
+                10000,
+                1,
+                ""
+            ],
+            [
+                12,
+                "花儿呀",
+                "花花Haya",
+                7688602,
+                9272486,
+                "",
+                0,
+                9272486,
+                9272486,
+                9272486,
+                0,
+                1,
+                269415357
+            ],
+            [
+                20,
+                0,
+                6406234,
+                ">50000",
+                0
+            ],
+            [
+                "",
+                ""
+            ],
+            0,
+            0,
+            null,
+            {
+                "ts": 1667910610,
+                "ct": "3E860AF0"
+            },
+            0,
+            0,
+            null,
+            null,
+            0,
+            49
+        ]
+    }
+}

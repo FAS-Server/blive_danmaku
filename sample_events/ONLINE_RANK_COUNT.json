@@ -1,0 +1,11 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ONLINE_RANK_COUNT",
+    "data": {
+        "cmd": "ONLINE_RANK_COUNT",
+        "data": {
+            "count": 2214
+        }
+    }
+}

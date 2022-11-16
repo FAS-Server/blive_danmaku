@@ -1,0 +1,14 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ROOM_REAL_TIME_MESSAGE_UPDATE",
+    "data": {
+        "cmd": "ROOM_REAL_TIME_MESSAGE_UPDATE",
+        "data": {
+            "roomid": 7688602,
+            "fans": 419952,
+            "red_notice": -1,
+            "fans_club": 8342
+        }
+    }
+}

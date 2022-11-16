@@ -1,0 +1,14 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "SPECIAL_GIFT",
+    "data": {
+        "cmd": "SPECIAL_GIFT",
+        "data": {
+            "39": {
+                "action": "end",
+                "id": 3373642938450
+            }
+        }
+    }
+}

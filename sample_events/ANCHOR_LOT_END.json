@@ -1,0 +1,11 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ANCHOR_LOT_END",
+    "data": {
+        "cmd": "ANCHOR_LOT_END",
+        "data": {
+            "id": 3416671
+        }
+    }
+}

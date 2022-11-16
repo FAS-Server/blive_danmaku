@@ -1,0 +1,95 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "DANMU_MSG",
+    "data": {
+        "cmd": "DANMU_MSG",
+        "info": [
+            [
+                0,
+                1,
+                25,
+                5816798,
+                1667910563119,
+                2098904573,
+                0,
+                "2648d311",
+                0,
+                0,
+                0,
+                "",
+                1,
+                {
+                    "bulge_display": 1,
+                    "emoticon_unique": "room_7688602_4362",
+                    "height": 162,
+                    "in_player_area": 1,
+                    "is_dynamic": 0,
+                    "url": "http://i0.hdslb.com/bfs/live/426ba7578e86f9aad66af1e34d1913a419cbc688.png",
+                    "width": 162
+                },
+                "{}",
+                {
+                    "mode": 0,
+                    "show_player_type": 0,
+                    "extra": "{\"send_from_me\":false,\"mode\":0,\"color\":5816798,\"dm_type\":1,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"花门\",\"user_hash\":\"642306833\",\"emoticon_unique\":\"room_7688602_4362\",\"bulge_display\":1,\"recommend_score\":1,\"main_state_dm_color\":\"\",\"objective_state_dm_color\":\"\",\"direction\":0,\"pk_direction\":0,\"quartet_direction\":0,\"anniversary_crowd\":0,\"yeah_space_type\":\"\",\"yeah_space_url\":\"\",\"jump_to_url\":\"\",\"space_type\":\"\",\"space_url\":\"\"}"
+                },
+                {
+                    "activity_identity": "",
+                    "activity_source": 0,
+                    "not_show": 0
+                }
+            ],
+            "花门",
+            [
+                351374561,
+                "万能的哆啦旦木",
+                0,
+                0,
+                0,
+                10000,
+                1,
+                ""
+            ],
+            [
+                18,
+                "花儿呀",
+                "花花Haya",
+                7688602,
+                13081892,
+                "",
+                0,
+                13081892,
+                13081892,
+                13081892,
+                0,
+                1,
+                269415357
+            ],
+            [
+                3,
+                0,
+                9868950,
+                ">50000",
+                0
+            ],
+            [
+                "",
+                ""
+            ],
+            0,
+            0,
+            null,
+            {
+                "ts": 1667910563,
+                "ct": "827CE024"
+            },
+            0,
+            0,
+            null,
+            null,
+            0,
+            63
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "USER_TOAST_MSG",
+    "data": {
+        "cmd": "USER_TOAST_MSG",
+        "data": {
+            "anchor_show": true,
+            "color": "#00D1F1",
+            "dmscore": 90,
+            "effect_id": 397,
+            "end_time": 1667910562,
+            "face_effect_id": 44,
+            "gift_id": 10003,
+            "guard_level": 3,
+            "is_show": 0,
+            "num": 1,
+            "op_type": 3,
+            "payflow_id": "2211082029106782101024813",
+            "price": 138000,
+            "role_name": "舰长",
+            "room_effect_id": 590,
+            "start_time": 1667910562,
+            "svga_block": 0,
+            "target_guard_count": 368,
+            "toast_msg": "<%poison_95%> 开通了舰长，今天是TA陪伴主播的第361天",
+            "uid": 520102,
+            "unit": "月",
+            "user_show": true,
+            "username": "poison_95"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "ANCHOR_LOT_CHECKSTATUS",
+    "data": {
+        "cmd": "ANCHOR_LOT_CHECKSTATUS",
+        "data": {
+            "id": 3419080,
+            "reject_reason": "",
+            "status": 4,
+            "uid": 269415357
+        }
+    }
+}

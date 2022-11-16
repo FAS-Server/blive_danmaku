@@ -1,0 +1,39 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "LIKE_INFO_V3_CLICK",
+    "data": {
+        "cmd": "LIKE_INFO_V3_CLICK",
+        "data": {
+            "show_area": 0,
+            "msg_type": 6,
+            "like_icon": "https://i0.hdslb.com/bfs/live/23678e3d90402bea6a65251b3e728044c21b1f0f.png",
+            "uid": 1551806879,
+            "like_text": "为主播点赞了",
+            "uname": "绝望的小蚂蚁",
+            "uname_color": "",
+            "identities": [
+                3,
+                1
+            ],
+            "fans_medal": {
+                "target_id": 2028100004,
+                "medal_level": 11,
+                "medal_name": "天上人",
+                "medal_color": 9272486,
+                "medal_color_start": 9272486,
+                "medal_color_end": 9272486,
+                "medal_color_border": 9272486,
+                "is_lighted": 1,
+                "guard_level": 0,
+                "special": "",
+                "icon_id": 0,
+                "anchor_roomid": 0,
+                "score": 20800
+            },
+            "contribution_info": {
+                "grade": 0
+            }
+        }
+    }
+}

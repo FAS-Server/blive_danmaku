@@ -1,0 +1,56 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "SUPER_CHAT_MESSAGE_JPN",
+    "data": {
+        "cmd": "SUPER_CHAT_MESSAGE_JPN",
+        "data": {
+            "id": "5505967",
+            "uid": "9560226",
+            "price": 100,
+            "rate": 1000,
+            "message": "老板娘，你也不想让雪国的房子都化掉吧（",
+            "message_jpn": "おかみさん、あなたも雪国の家を全部溶かしたくないでしょう（",
+            "is_ranked": 1,
+            "background_image": "https://i0.hdslb.com/bfs/live/a712efa5c6ebc67bafbe8352d3e74b820a00c13e.png",
+            "background_color": "#FFF1C5",
+            "background_icon": "",
+            "background_price_color": "#ECCF75",
+            "background_bottom_color": "#E2B52B",
+            "ts": 1667910605,
+            "token": "BF7C0E48",
+            "medal_info": {
+                "icon_id": 0,
+                "target_id": 269415357,
+                "special": "",
+                "anchor_uname": "花花Haya",
+                "anchor_roomid": 7688602,
+                "medal_level": 25,
+                "medal_name": "花儿呀",
+                "medal_color": "#6154c"
+            },
+            "user_info": {
+                "uname": "燕窝银耳桂花儿粥",
+                "face": "https://i0.hdslb.com/bfs/face/fa2a99432ea45e26c4dd99a6aff86796fb1a246d.jpg",
+                "face_frame": "https://i0.hdslb.com/bfs/live/80f732943cc3367029df65e267960d56736a82ee.png",
+                "guard_level": 3,
+                "user_level": 21,
+                "level_color": "#5896de",
+                "is_vip": 0,
+                "is_svip": 0,
+                "is_main_vip": 1,
+                "title": "0",
+                "manager": 0
+            },
+            "time": 299,
+            "start_time": 1667910604,
+            "end_time": 1667910904,
+            "gift": {
+                "num": 1,
+                "gift_id": 12000,
+                "gift_name": "醒目留言"
+            }
+        },
+        "roomid": "7688602"
+    }
+}

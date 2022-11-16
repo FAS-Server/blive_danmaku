@@ -1,0 +1,20 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "HOT_RANK_SETTLEMENT",
+    "data": {
+        "cmd": "HOT_RANK_SETTLEMENT",
+        "data": {
+            "area_name": "总榜",
+            "cache_key": "dedf2acbfd83a30d8b2378fb6cd97ff2",
+            "dm_msg": "恭喜主播 <% 花花Haya %> 荣登限时热门榜总榜top4! 即将获得热门流量推荐哦！",
+            "dmscore": 144,
+            "face": "https://i0.hdslb.com/bfs/face/93c258013a48e9aed95f88251c1170a919aec105.jpg",
+            "icon": "https://i0.hdslb.com/bfs/live/cb2e160ac4f562b347bb5ae6e635688ebc69580f.png",
+            "rank": 4,
+            "timestamp": 1667912404,
+            "uname": "花花Haya",
+            "url": "https://live.bilibili.com/p/html/live-app-hotrank/result.html?is_live_half_webview=1&hybrid_half_ui=1,5,250,200,f4eefa,0,30,0,0,0;2,5,250,200,f4eefa,0,30,0,0,0;3,5,250,200,f4eefa,0,30,0,0,0;4,5,250,200,f4eefa,0,30,0,0,0;5,5,250,200,f4eefa,0,30,0,0,0;6,5,250,200,f4eefa,0,30,0,0,0;7,5,250,200,f4eefa,0,30,0,0,0;8,5,250,200,f4eefa,0,30,0,0,0&areaId=0&cache_key=dedf2acbfd83a30d8b2378fb6cd97ff2"
+        }
+    }
+}

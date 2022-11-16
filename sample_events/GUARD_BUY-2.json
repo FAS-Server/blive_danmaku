@@ -1,0 +1,19 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "GUARD_BUY",
+    "data": {
+        "cmd": "GUARD_BUY",
+        "data": {
+            "uid": 430018335,
+            "username": "依氧化二氮",
+            "guard_level": 3,
+            "num": 1,
+            "price": 198000,
+            "gift_id": 10003,
+            "gift_name": "舰长",
+            "start_time": 1667910610,
+            "end_time": 1667910610
+        }
+    }
+}

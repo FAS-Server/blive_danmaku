@@ -1,0 +1,87 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "DANMU_MSG",
+    "data": {
+        "cmd": "DANMU_MSG",
+        "info": [
+            [
+                0,
+                1,
+                25,
+                5566168,
+                1667910589475,
+                1667910489,
+                0,
+                "1e33a90c",
+                0,
+                0,
+                0,
+                "",
+                0,
+                "{}",
+                "{}",
+                {
+                    "mode": 0,
+                    "show_player_type": 0,
+                    "extra": "{\"send_from_me\":false,\"mode\":0,\"color\":5566168,\"dm_type\":0,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"哇！！！！\",\"user_hash\":\"506702092\",\"emoticon_unique\":\"\",\"bulge_display\":0,\"recommend_score\":4,\"main_state_dm_color\":\"\",\"objective_state_dm_color\":\"\",\"direction\":0,\"pk_direction\":0,\"quartet_direction\":0,\"anniversary_crowd\":0,\"yeah_space_type\":\"\",\"yeah_space_url\":\"\",\"jump_to_url\":\"\",\"space_type\":\"\",\"space_url\":\"\"}"
+                },
+                {
+                    "activity_identity": "",
+                    "activity_source": 0,
+                    "not_show": 0
+                }
+            ],
+            "哇！！！！",
+            [
+                1158531020,
+                "木珂珂kk_",
+                0,
+                0,
+                0,
+                10000,
+                1,
+                ""
+            ],
+            [
+                3,
+                "叶息香",
+                "薄荷Miint",
+                26323225,
+                6067854,
+                "",
+                0,
+                6067854,
+                6067854,
+                6067854,
+                0,
+                1,
+                3493076263766277
+            ],
+            [
+                4,
+                0,
+                9868950,
+                ">50000",
+                0
+            ],
+            [
+                "",
+                ""
+            ],
+            0,
+            0,
+            null,
+            {
+                "ts": 1667910589,
+                "ct": "95AB1626"
+            },
+            0,
+            0,
+            null,
+            null,
+            0,
+            14
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "room_display_id": 7688602,
+    "room_real_id": 7688602,
+    "type": "LIKE_INFO_V3_UPDATE",
+    "data": {
+        "cmd": "LIKE_INFO_V3_UPDATE",
+        "data": {
+            "click_count": 11405
+        }
+    }
+}
