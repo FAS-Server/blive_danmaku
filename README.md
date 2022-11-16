@@ -31,21 +31,41 @@
 
 | 代码                            | 含义    | 备注          |
 |-------------------------------|-------|-------------|
-| DANMU_MSG                     | 弹幕信息  |             |
-| SEND_GIFT                     | 实时礼物  | 不推荐使用, 可能刷屏 |
-| COMBO_SEND                    | 礼物连击  | 响应稍慢, 避免刷屏  |
-| GUARD_BUY                     | 续费大航海 |             |
+| ANCHOR_LOT_AWARD | 天选时刻中奖名单 |  |
+| ANCHOR_LOT_CHECKSTATUS | 天选时刻检查状态 | 未实现 |
+| ANCHOR_LOT_END | 天选时刻抽奖结束 | 未实现 |
+| ANCHOR_LOT_START | 天选时刻抽奖开始 |  |
+| COMBO_SEND | 礼物连击 |  |
+| COMMON_NOTICE_DANMAKU | 通用通知 | 含红包礼物涨粉、直播活动信息等 |
+| DANMU_AGGREGATION | 抽奖弹幕 | 未实现，包含天选抽奖弹幕、红包抽奖弹幕等 |
+| DANMU_MSG | 弹幕信息 |  |
+| ENTRY_EFFECT | 入场特效 | 会压缩过长的用户名（用...表示） |
+| GUARD_BUY            | 续费舰长 |             |
+| HOT_RANK_CHANGED | 限时热门榜排名 | 包含榜单名、具体排名 |
+| HOT_RANK_CHANGED_V2 | 限时热门榜排名V2 | 包含榜单名、具体排名和模糊排名（如 虚拟主播top50） |
+| HOT_RANK_SETTLEMENT | 限时热门榜排名通知 | 例：恭喜主播 <% 主播名称 %> 荣登限时热门榜总榜榜首! 即将获得热门流量推荐哦！ |
+| HOT_RANK_SETTLEMENT_V2 | 限时热门榜排名通知V2 | 未实现，因信息同上 |
+| INTERACT_WORD | 进入直播间 | 只包含非舰长用户的进入 |
+| LIKE_INFO_V3_CLICK | 用户点赞 | |
+| LIKE_INFO_V3_UPDATE | 点赞总数量更新 | |
+| LIVE | 直播开始 | |
+| NOTICE_MSG | 通知横幅 | 未实现，无计划，包含舰长续费跑马灯、直播任务情况、此房间和**其他房间**的大额礼物等 |
+| ONLINE_RANK_COUNT | 高能用户总数量 | |
+| ONLINE_RANK_TOP3 | 高能榜前三变化 | |
+| ONLINE_RANK_V2 | 高能榜前七名单 | |
+| POPULARITY_RED_POCKET_NEW | 红包礼物 |  |
+| POPULARITY_RED_POCKET_START | 红包开抢 |  |
+| POPULARITY_RED_POCKET_WINNER_LIST | 红包中奖 |  |
+| PREPARING | 直播关闭 | |
+| ROOM_REAL_TIME_MESSAGE_UPDATE | 粉丝数、粉丝团更新 | 未实现 |
+| SEND_GIFT                     | 实时礼物  |            |
+| SPECIAL_GIFT | 特殊礼物 | 未实现, 节奏风暴类礼物但已经在其他礼物事件触发，故无必要 |
+| STOP_LIVE_ROOM_LIST | 停播房间列表 | 未实现，无计划 |
 | SUPER_CHAT_MESSAGE            | 醒目留言  |             |
-| PREPARING                     | 直播关闭  |             |
-| LIVE                          | 直播开始  |             |
-| INTERACT_WORD                 | 进入直播间 |             |
-| VERIFICATION_SUCCESSFUL       | 成功连接  |             |
-| WELCOME                       | 老爷加入  | 未实现         |
-| WELCOME_GUARD                 | 房管加入  | 未实现         |
-| ENTRY_EFFECT                  | 入场特效  | 未实现         |
-| ROOM_RANK                     | 排名更新  | 未实现         |
-| ACTIVITY_BANNER_UPDATE_V2     | 小时榜   | 未实现         |
-| ROOM_REAL_TIME_MESSAGE_UPDATE | 粉丝数更新 | 未实现         |
-| NOTICE_MSG                    | 系统通知  | 未实现         |
-| VIEW                          | 人气更新  |             |
+| SUPER_CHAT_MESSAGE_JPN | 醒目留言(日) | 带有日语翻译 |
+| USER_TOAST_MSG | 用户toast | 包含舰长续费（附陪伴时长） |
+| VERIFICATION_SUCCESSFUL | 成功连接 | |
+| VIEW | 人气更新 | |
+| WATCHED_CHANGE | 看过人数 | |
+| WIDGET_BANNER | 小部件横幅 | 未实现，活动信息展示 |
 

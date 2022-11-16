@@ -6,8 +6,7 @@ from typing import List
 from bilibili_api import live
 from bilibili_api.exceptions.LiveException import LiveException
 from mcdreforged.api.decorator import new_thread
-from mcdreforged.api.rtext import RText, RColor
-from mcdreforged.minecraft.rtext import RTextBase, RTextList
+from mcdreforged.api.rtext import RText, RColor, RTextBase, RTextList, RAction, RStyle
 from requests import post
 import time
 
@@ -15,7 +14,10 @@ from blive_danmaku.config import RoomConfig
 from blive_danmaku.danmaku_events import all_event_name
 from blive_danmaku.utils import print_msg
 
-
+def get_user(uid: int, uname: str, warpped: bool = True, color: RColor = RColor.white):
+        utext = f'<{uname}> ' if warpped else uname
+        url = f'https://space.bilibili.com/{uid}'
+        return RText(utext, color).h(url).c(RAction.open_url, url)
 class Room(Thread):
     def __init__(self, config: RoomConfig):
         Thread.__init__(self, name=f'BliveThread-{config.id}')
@@ -29,6 +31,10 @@ class Room(Thread):
     @property
     def id(self):
         return self.config.id
+
+    @property
+    def url(self):
+        return f"https://live.bilibili.com/{self.id}"
 
     @property
     def nickname(self):
@@ -47,12 +53,22 @@ class Room(Thread):
         self.config.listener = listener
 
     def get_room_prefix(self) -> RTextBase:
-        return RText(f'[{self.nickname}] ', RColor.light_purple)
+        return RText(f'[{self.nickname}] ', RColor.light_purple).h(self.url).c(RAction.open_url, self.url)
 
     @staticmethod
     def get_user_prefix(uname: str, uid: int, color: RColor = RColor.white, short_prefix: bool = False):
-        text = f'{uname}' if short_prefix else f'<{uname}>'
-        return RText(text, color)
+        text = f'{uname}' if short_prefix else f'<{uname}> '
+        url = f'https://space.bilibili.com/{uid}'
+        return RText(text, color).h(url).c(RAction.open_url, url)
+
+    def build_rtext_list(self, raw: List[RTextBase], sep: str = ', ') -> RTextBase:
+        text = RTextList()
+        size = len(raw)
+        for i in range(size):
+            text.append(raw[i])
+            if i != size - 1:
+                text.append(sep)
+        return text
 
     @new_thread
     def send_danmaku(self, msg: str):
@@ -75,142 +91,198 @@ class Room(Thread):
             }
         )
 
-        # -------------#
-        #  事件监听开始 #
-        # -------------#
-
-    async def on_danmu_msg(self, event):
-        # DANMU_MSG: 用户发送弹幕
-        # {
-        #     'data':
-        #     {
-        #         'info': [
-        #             [0, 1, 25, 16777215, 1635831657114, 1635830791, 0, 'be1cd984',
-        #                 0, 0, 0, '', 0, '{}', '{}', {'mode': 0, 'extra': ''}],
-        #             '花花看过崩坏3嘛，剧情可甜了',
-        #             [270908318, '火云wizard', 0, 0, 0, 10000, 1, ''],
-        #             [1, '粉丝团', '哔哩哔哩番剧', 544614, 6067854, '', 0,
-        #                 12632256, 12632256, 12632256, 0, 0, 928123],
-        #             [13, 0, 6406234, '>50000', 0],
-        #             ['', ''], 0, 0, None, {
-        #                 'ts': 1635831657, 'ct': '2D706B56'}, 0, 0, None, None, 0, 14
-        #         ]
-        #     }
-        # }
-        user_data = event['data']['info'][2]
+    # -------------#
+    #  事件监听开始 #
+    # -------------#
+    async def on_anchor_lot_award(self, event):
+        # ANCHOR_LOT_AWARD: 天选时刻中将名单
+        users_text = map(lambda x: get_user(x['uid'], x['uname'], False, RColor.red), event['data']['data']['award_users'])
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(user_data[1], user_data[0]),
-            event['data']['info'][1]
+            RText('[天选时刻] ', RColor.dark_red),
+            '恭喜 ',
+            # award_users,
+            self.build_rtext_list(list(users_text)),
+            ' 获得了',
+            RText(event['data']['data']['award_name'], RColor.red, RStyle.bold)
         ))
 
-    async def on_send_gift(self, event):
-        # SEND_GIFT: 礼物 不建议使用, 可能造成消息刷屏; 建议使用 on_combo_send
-        # {
-        #     'data': {
-        #         'data': {
-        #             'action': '投喂', 'batch_combo_id': 'batch:gift:combo_id:193775874:269415357:30607:1635831689.2308',
-        #             'batch_combo_send': None, 'beatId': '', 'biz_source': 'live', 'blind_gift': None,
-        #             'broadcast_id': 0, 'coin_type': 'silver', 'combo_resources_id': 1, 'combo_send': None,
-        #             'combo_stay_time': 3, 'combo_total_coin': 1, 'crit_prob': 0, 'demarcation': 1,
-        #             'discount_price': 0, 'dmscore': 24, 'draw': 0, 'effect': 0, 'effect_block': 1,
-        #             'float_sc_resource_id': 0,
-        #             'giftId': 30607, 'giftName': '小心心', 'giftType': 5, 'gold': 0, 'guard_level': 0,
-        #             'is_first': False, 'is_special_batch': 0, 'magnification': 1,
-        #             'medal_info': {
-        #                 'anchor_roomid': 0, 'anchor_uname': '', 'guard_level': 0, 'icon_id': 0, 'is_lighted': 1,
-        #                 'medal_color': 9272486, 'medal_color_border': 9272486, 'medal_color_end': 9272486,
-        #                 'medal_color_start': 9272486, 'medal_level': 10, 'medal_name': '德云色', 'special': '',
-        #                 'target_id': 8739477
-        #             },
-        #             'num': 1, 'price': 0, 'rcost': 58907141, 'remain': 1, 'rnd': '1931396080', 'send_master': None,
-        #             'silver': 0, 'super': 0, 'super_batch_gift_num': 2, 'super_gift_num': 2, 'svga_block': 0,
-        #             'tag_image': '', 'tid': '1635831689120400002', 'timestamp': 1635831689, 'top_list': None,
-        #             'total_coin': 0, 'uid': 193775874, 'uname': '浪里白条哈赛ki'
-        #         }
-        #     }
-        # }
+    async def on_anchor_lot_start(self, event):
+        data = event['data']['data']
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(
-                event['data']['data']['uname'], event['data']['data']['uid'], short_prefix=True),
-            '{action}了{num}个{giftName}'.format(**event['data']['data'])
+            f"天选时刻开启！\n",
+            f"    奖品: {data['award_name']} x{data['award_num']}\n",
+            f"    抽奖口令:{data['danmu']}\n", 
+            f"    中奖要求: {data['require_text']}"
         ))
 
     async def on_combo_send(self, event):
         # COMBO_SEND：礼物连击
-        # {
-        #     'data':
-        #     {
-        #         'data':
-        #         {
-        #             'action': '投喂', 'batch_combo_id': 'batch:gift:combo_id:6992678:8739477:30607:1635836133.2648',
-        #             'batch_combo_num': 24, 'combo_id': 'gift:combo_id:6992678:8739477:30607:1635836131.4221',
-        #             'combo_num': 24, 'combo_total_coin': 0, 'dmscore': 56, 'gift_id': 30607, 'gift_name': '小心心',
-        #             'gift_num': 0, 'is_show': 1,
-        #             'medal_info': {'anchor_roomid': 0, 'anchor_uname': '', 'guard_level': 0, 'icon_id': 0,
-        #             'is_lighted': 1, 'medal_color': 9272486, 'medal_color_border': 9272486,
-        #             'medal_color_end': 9272486, 'medal_color_start': 9272486, 'medal_level': 12, 'medal_name': '德云色',
-        #             'special': '', 'target_id': 8739477},
-        #             'name_color': '', 'r_uname': '老实憨厚的笑笑', 'ruid': 8739477, 'send_master': None, 'total_num': 24,
-        #             'uid': 6992678, 'uname': 'GalahaD_GY'
-        #         }
-        #     }
-        # }
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(
-                event['data']['data']['uname'], event['data']['data']['uid'], short_prefix=True),
+            get_user(
+                event['data']['data']['uid'], event['data']['data']['uname'], False),
             '{action}了{gift_name} x{combo_num}'.format(**event['data']['data'])
         ))
 
+    async def on_common_notice_danmaku(self, event):
+        # COMMON_NOTICE_DANMAKU: 通用通知弹幕
+        for segment in event['data']['data']['content_segments']:
+            print_msg(RTextList(
+                self.get_room_prefix(),
+                segment['text']
+            ))
+
+    async def on_danmu_msg(self, event):
+        # DANMU_MSG: 用户发送弹幕
+        user_data = event['data']['info'][2]
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(user_data[0], user_data[1]),
+            event['data']['info'][1]
+        ))
+
+    async def on_entry_effect(self, event):
+        # ENTRY_EFFECT
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            str(event['data']['data']['copy_writing']).replace('<%', '').replace('%>', '')
+        ))
+
     async def on_guard_buy(self, event):
-        # GUARD_BUY：续费大航海
-        # {
-        #     'data':
-        #     {
-        #         'data':
-        #         {
-        #             'uid': 90432317, 'username': '大明湖畔的郭胖子',
-        #             'guard_level': 3, 'num': 1, 'price': 198000, 'gift_id': 10003, 'gift_name': '舰长',
-        #             'start_time': 1635843126, 'end_time': 1635843126}}}
+        # GUARD_BUY：续费舰长
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(
-                event['data']['data']['username'], event['data']['data']['uid'], short_prefix=True),
-            '续费了{gift_name}'.format(**event['data']['data'])
+            get_user(event['data']['data']['uid'], event['data']['data']['username'], False),
+            '续费了 {num}个月 {gift_name}'.format(**event['data']['data'])
         ))
 
-    async def on_super_chat_message(self, event):
-        # SUPER_CHAT_MESSAGE：醒目留言（SC）
-        # {'data': {'data': {
-        #     'dmscore': 80, 'end_time': 1635839132,
-        #     'gift': {'gift_id': 12000, 'gift_name': '醒目留言', 'num': 1},
-        #     'id': 2579512, 'is_ranked': 0, 'is_send_audit': 1,
-        #     'medal_info': {'anchor_roomid': 7777, 'anchor_uname': '老实憨厚的笑笑', 'guard_level': 0, 'icon_id': 0,
-        #     'is_lighted': 1, 'medal_color': '#5d7b9e', 'medal_color_border': 6126494, 'medal_color_end': 6126494,
-        #     'medal_color_start': 6126494, 'medal_level': 5, 'medal_name': '德云色', 'special': '', 'target_id': 8739477},
-        #     'message': '好听，主播别害羞，继续继续', 'price': 30, 'rate': 1000, 'start_time': 1635839072, 'time': 60,
-        #     'token': '41648C03', 'trans_mark': 0, 'ts': 1635839072, 'uid': 3438425,
-        #     'user_info': {'face_frame': '', 'guard_level': 0, 'is_main_vip': 1, 'is_svip': 0, 'is_vip': 0,
-        #     'level_color': '#61c05a', 'manager': 0, 'name_color': '#666666', 'title': '0', 'uname': '北枳南笙mazarine',
-        #     'user_level': 13}
-        # }}}
+    async def on_hot_rank_changed(self, event):
+        # HOT_RANK_CHANGED 限时热门榜
+        data = event['data']['data']
+        print_msg(
+            RTextList(
+                self.get_room_prefix(),
+                f'当前限时热门榜排名为{data["area_name"]}第{data["rank"]}'
+            )
+        )
+    
+    async def on_hot_rank_changed_v2(self, event):
+        # HOT_RANK_CHANGED_V2 限时热门榜
+        data = event['data']['data']
+        print_msg(
+            RTextList(
+                self.get_room_prefix(),
+                f'当前限时热门榜排名为{data["rank_desc"]}'
+            )
+        )
+
+    async def on_hot_rank_settlement(self, event):
+        # HOT_RANK_SETTLEMENT 限时热门榜排名通知
+        data = event['data']['data']
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(
-                event['data']['data']['user_info']['uname'], event['data']['data']['uid'], short_prefix=True),
-            '赠送了价值 §c￥{price}§r的醒目留言:\n§5> {message}§r\n'.format(
-                **event['data']['data'])
+            str(data['dm_msg']).replace('<%', '').replace('%>', '').replace('  ', ' ')
         ))
 
-    async def on_welcome(self, event):
-        # WELCOME: 老爷进入房间
-        pass
 
-    async def on_welcome_guard(self, event):
-        # WELCOME_GUARD: 房管进入房间
-        pass
+    async def on_hot_rank_settlement_v2(self, event):
+        # HOT_RANK_SETTLEMENT_V2: 限时热门榜排名通知
+        await self.on_hot_rank_settlement(event)
+
+
+    async def on_interact_word(self, event):
+        # INTERACT_WORD: 非舰长用户进入直播间
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(event['data']['data']['uid'], event['data']['data']['uname'], False),
+            '加入了直播间'.format(**event['data']['data'])
+        ))
+
+    async def on_like_info_v3_click(self, event):
+        # LIKE_INFO_V3_CLICK 用户点赞
+        data = event['data']['data']
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(data['uid'], data['uname'], False),
+            data['like_text']
+        ))
+
+    async def on_like_info_v3_update(self, event):
+        # LIKE_INFO_V3_UPDATE: 点赞总数量更新
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            f'被点赞{event["data"]["data"]["click_count"]}次'
+        ))
+
+    async def on_live(self, event):
+        # LIVE: 直播开始
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            '直播已开启'
+        ))
+
+    async def on_online_rank_count(self, event):
+        # ONLINE_RANK_COUNT: 高能用户总数量
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            f'高能用户总数为 {event["data"]["data"]["count"]}'
+        ))
+
+    async def on_online_rank_top3(self, event):
+        # ONLINE_RANK_TOP3: 高能榜前三变化
+        data = event['data']['data']
+        for rank in data['list']:
+            print_msg(RTextList(
+                self.get_room_prefix(),
+                str(rank['msg']).replace('<%', '').replace('%>', '')
+            ))
+
+    async def on_online_rank_v2(self, event):
+        # ONLINE_RANK_V2: 高能榜前七名单
+        users = map(lambda x: get_user(x['uid'], x['uname'], False, RColor.red), event['data']['data']['list'])
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            '当前高能榜单前七名为: ',
+            self.build_rtext_list(list(users))
+        ))
+
+    async def on_popularity_red_pocket_new(self, event):
+        # POPULARITY_RED_POCKET_NEW
+        data = event["data"]["data"]
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(data["uid"], data["uname"], False),
+            RText(f"送出一个红包, 价值{data['price']}电池")
+        ))
+    
+    
+    async def on_popularity_red_pocket_start(self, event):
+        # POPULARITY_RED_POCKET_START
+        data = event["data"]["data"]
+        awards = ', '.join(map(lambda x: f'{x["gift_name"]} x{x["num"]}', data['awards']))
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(data["sender_uid"], data["sender_name"], False),
+            "的红包开抢了！奖品有：",
+            awards
+        ))
+
+    async def on_popularity_red_pocket_winner_list(self, event):
+        # POPULARITY_RED_POCKET_WINNER_LIST
+        data = event['data']['data']
+        awards = []
+        for aid in data['awards']:
+            _award = data['awards'][aid]
+            _winner = map(lambda x: get_user(x[0], x[1], False, RColor.red), filter(lambda x: str(x[3])==aid, data['winner_info']))
+            text = f"{self.build_rtext_list(list(_winner))} 抽中了 {_award['award_name']}"
+            awards.append(text)
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            "[红包] 恭喜：\n\t",
+            self.build_rtext_list(awards, '\n\t')
+        ))
 
     async def on_preparing(self, event):
         # PREPARING: 直播准备中
@@ -220,90 +292,55 @@ class Room(Thread):
             '直播已关闭'
         ))
 
-    async def on_live(self, event):
-        # LIVE: 直播开始
-        # {
-        #     'data':
-        #     {
-        #         'cmd': 'LIVE', 'live_key': '190125605077585777', 'voice_background': '',
-        #         'sub_session_key': '190125605077585777sub_time:1635850495', 'live_platform': 'pc_link',
-        #         'live_model': 0, 'roomid': 22744945
-        #     }
-        # }
-        print_msg(RTextList(
-            self.get_room_prefix(),
-            '直播已开启'
-        ))
-
     async def on_room_real_time_message_update(self, event):
-        # ROOM_REAL_TIME_MESSAGE_UPDATE: 粉丝数等更新
-        # {
-        #     'data':
-        #     {
-        #         'data':
-        #         {
-        #             'fans': 1383249, 'red_notice': -1, 'fans_club': 49189
-        #         }
-        #     }
-        # }
+        # ROOM_REAL_TIME_MESSAGE_UPDATE
         pass
 
-    async def on_entry_effect(self, event):
-        # ENTRY_EFFECT: 进场特效
-        # {
-        #     'data':
-        #     {
-        #         'data':
-        #         {
-        #             'id': 4, 'uid': 356336867, 'target_id': 8739477, 'mock_effect': 0,
-        #             'privilege_type': 3, 'copy_writing': '欢迎舰长 <%黑暗女王的泪%> 进入直播间', 'priority': 1,
-        #             'show_avatar': 1, 'effective_time': 2, 'web_basemap_url': '', 'web_effective_time': 0,
-        #             'web_effect_close': 0, 'web_close_time': 0, 'business': 1,
-        #             'copy_writing_v2': '欢迎舰长 <%黑暗女王的泪%> 进入直播间', 'icon_list': [], 'max_delay_time': 7,
-        #             'trigger_time': 1635840589630651228, 'identities': 6
-        #         }
-        #     }
-        # }
-        pass
-
-    async def on_room_rank(self, event):
-        # ROOM_RANK: 房间排名更新
-        pass
-
-    async def on_interact_word(self, event):
-        # INTERACT_WORD: 用户进入直播间
-        # {
-        #     'data':
-        #     {
-        #         'data':
-        #         {
-        #             'contribution':
-        #             {'grade': 0}, 'dmscore': 16, 'fans_medal':
-        #             {'anchor_roomid': 57687, 'guard_level': 0, 'icon_id': 0, 'is_lighted': 0, 'medal_color': 1725515,
-        #             'medal_color_border': 12632256,
-        #                 'medal_color_end': 12632256, 'medal_color_start': 12632256, 'medal_level': 22,
-        #                 'medal_name': '判判', 'score': 50002362, 'special': '', 'target_id': 4191996},
-        #             'identities': [1], 'is_spread': 0, 'msg_type': 1, 'roomid': 545068, 'score': 1635837793687,
-        #             'spread_desc': '', 'spread_info': '', 'tail_icon': 0, 'timestamp': 1635837793,
-        #             'trigger_time': 1635837792648484600,
-        #             'uid': 6168928, 'uname': '老攻ャ', 'uname_color': ''
-        #         }
-        #     }
-        # }
+    async def on_send_gift(self, event):
+        # SEND_GIFT: 礼物
         print_msg(RTextList(
             self.get_room_prefix(),
-            self.get_user_prefix(
-                event['data']['data']['uname'], event['data']['data']['uid'], short_prefix=True),
-            '加入了直播间'.format(**event['data']['data'])
+            get_user(
+                event['data']['data']['uid'], event['data']['data']['uname'], False),
+            '{action}了{num}个{giftName}'.format(**event['data']['data'])
         ))
 
-    async def on_activity_banner_update_v2(self, event):
-        # ACTIVITY_BANNER_UPDATE_V2: 好像是房间名旁边那个xx小时榜
+    async def on_special_gift(self, event):
+        # SPECIAL_GIFT
         pass
 
-    async def on_notice_msg(self, event):
-        # 系统通知
-        pass
+
+    async def on_super_chat_message(self, event):
+        # SUPER_CHAT_MESSAGE：醒目留言（SC）
+        data = event['data']['data']
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            get_user(
+                data['uid'], data['user_info']['uname'], False),
+            '赠送了价值 §c￥{price}§r的醒目留言:\n\t§5{message}§r'.format(
+                **data)
+        ))
+
+    async def on_super_chat_message_jpn(self, event):
+        # SUPER_CHAT_MESSAGE_JPN：醒目留言,带日语翻译（SC）
+        await self.on_super_chat_message(event)
+
+    async def on_user_toast_msg(self, event):
+        # USER_TOAST_MSG: 
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            str(event['data']['data']['toast_msg']).replace('<%', '').replace('%>', '')
+        ))
+
+
+    async def on_verification_successful(self, event):
+        # VERIFICATION_SUCCESSFUL: 认证成功
+        # {'room_display_id': 7777, 'room_real_id': 545068,
+        #     'type': 'VERIFICATION_SUCCESSFUL'}
+        print_msg(RTextList(
+            self.get_room_prefix(),
+            '直播间连接成功'
+        ))
 
     async def on_view(self, event):
         # VIEW: 直播间人气更新
@@ -314,14 +351,9 @@ class Room(Thread):
             f'人气值为{event["data"]}'
         ))
 
-    async def on_verification_successful(self, event):
-        # VERIFICATION_SUCCESSFUL: 认证成功
-        # {'room_display_id': 7777, 'room_real_id': 545068,
-        #     'type': 'VERIFICATION_SUCCESSFUL'}
-        print_msg(RTextList(
-            self.get_room_prefix(),
-            '直播间连接成功'
-        ))
+    async def on_watch_changed(self, event):
+        # WATCHED_CHANGE
+        pass
 
     # -------------#
     # 事件监听结束 #
