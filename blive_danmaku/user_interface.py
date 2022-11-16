@@ -34,7 +34,7 @@ class UserInterface(Singleton):
             src.reply(RText(f'§b房间名称§r: {self.room.nickname}').h('点击修改')
                       .c(RAction.suggest_command, f'{PREFIX} config nickname <房间名称>'))
         elif conf_name == 'listener':
-            src.reply(RText(f'§b事件监听§r:  {len(self.room.listener)} / {len(all_event_name)}')
+            src.reply(RText(f'§b事件监听§r:  {len(set(filter(lambda x: x in all_event_name, self.room.listener)))} / {len(all_event_name)}')
                       .h('点击编辑').c(RAction.run_command, f'{PREFIX} config listener'))
 
     def help_msg(self, src: CommandSource):
