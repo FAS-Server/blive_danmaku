@@ -1,7 +1,7 @@
 {
     "id": "blive_danmaku",
     "version": "0.2.0",
-    "name": "Blibili Live Danmaku",
+    "name": "Bilibili Live Danmaku",
     "description": {
         "en_us": "Danmaku plugin for bilibili",
         "zh_cn": "B站直播弹幕插件"
